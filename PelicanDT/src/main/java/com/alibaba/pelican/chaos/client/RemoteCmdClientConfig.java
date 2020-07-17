@@ -32,6 +32,8 @@ public class RemoteCmdClientConfig {
 
     private String ip;
 
+    private Integer port;
+
     private String userName;
 
     private String password;
@@ -46,6 +48,13 @@ public class RemoteCmdClientConfig {
 
     public RemoteCmdClientConfig() {
 
+    }
+
+    public RemoteCmdClientConfig(String ip, Integer port, String userName, String password) {
+        this.ip = ip;
+        this.port = port;
+        this.userName = userName;
+        this.password = password;
     }
 
     public RemoteCmdClientConfig(String ip, String userName, String password) {

@@ -82,7 +82,11 @@ public class RemoteCmdClient implements ICmdExecutor {
     }
 
     private void openConnect(String ip) {
-        connection = new Connection(ip);
+        openConnect(ip, 22);
+    }
+
+    private void openConnect(String ip, Integer port) {
+        connection = new Connection(ip, port);
         for (int i = 1; i <= remoteCmdClientConfig.getRetryTime(); i++) {
             try {
                 connection.connect(null, remoteCmdClientConfig.getCoTimeout(), remoteCmdClientConfig.getCoTimeout());
@@ -132,7 +136,8 @@ public class RemoteCmdClient implements ICmdExecutor {
             throw new IllegalArgumentException(errorMsg);
         }
         String ip = remoteCmdClientConfig.getIp();
-        openConnect(ip);
+        Integer port = remoteCmdClientConfig.getPort();
+        openConnect(ip, port == null ? 22 : port);
         authConnect();
     }
 
